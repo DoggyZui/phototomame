@@ -22,7 +22,7 @@ for(let row=0;row<count_row;row++){
   for(let col=0;col<count_col;col++){
     const p = new Promise((resolve) => {
       fabric.Image.fromURL('file://'+__dirname+`/origin/canvas${callRow}/${file[col]}`,(oImg)=>{
-        oImg.set({
+        oImg.set({ 
           id : 'image_'+row+'_'+col,
           left:col*size_width,
           top:row*size_height,
