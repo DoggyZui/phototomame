@@ -19,4 +19,4 @@ var rect = new fabric.Rect({
 })
 canvas.add(rect);
 canvas.renderAll();
-canvas.createPNGStream().pipe(fs.createWriteStream("/docs/output.png"))
+canvas.createPNGStream().pipe(fs.createWriteStream("./docs/output.png"))
