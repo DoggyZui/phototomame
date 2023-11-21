@@ -5,8 +5,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // 설정을 위한 통일된 규격임...
-const size_width = 1920;
-const size_height = 1080;
+// const size_width = 1920;
+// const size_height = 1080;
+const size_width = 3840;
+const size_height = 2160;
 const count_row = 6;
 const count_col = 2;
 
@@ -14,7 +16,6 @@ const count_col = 2;
 
 const canvas = new fabric.StaticCanvas(null, {width: size_width*count_col, height: size_height*count_row})
 const promiseArray = []
-console.log(import.meta.url)
 for(let row=0;row<count_row;row++){
   let callRow = row+1;
   const file = await fs.readdirSync(`./origin/canvas${callRow}`);
@@ -33,10 +34,7 @@ for(let row=0;row<count_row;row++){
         resolve();
       })
     });
-      
     promiseArray.push(p);
-
-
   }
 }
 Promise.all(promiseArray)
