@@ -5,11 +5,11 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // 설정을 위한 통일된 규격임...
-const size_width = 1920;
-const size_height = 1080;
+const size_width = 1024;
+const size_height = 2048;
 // const size_width = 3840;
 // const size_height = 2160;
-const count_row = 6;
+const count_row = 1;
 const count_col = 2;
 
 // 아틀라싱 툴임. 다만, 유니티 내에서 편집가능하면 패스해도됨.
