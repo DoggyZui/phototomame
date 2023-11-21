@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // 설정을 위한 통일된 규격임...
-const size_width = 600;
-const size_height = 300;
+const size_width = 1920;
+const size_height = 1080;
 const count_row = 6;
 const count_col = 2;
 
@@ -21,7 +21,6 @@ for(let row=0;row<count_row;row++){
   for(let col=0;col<count_col;col++){
     const p = new Promise((resolve) => {
       fabric.Image.fromURL('file://'+__dirname+`/origin/canvas${callRow}/${file[col]}`,(oImg)=>{
-        console.log("--> ",row,"--",col);
         oImg.set({
           id : 'image_'+row+'_'+col,
           left:col*size_width,
@@ -42,8 +41,7 @@ for(let row=0;row<count_row;row++){
 }
 Promise.all(promiseArray)
   .then(() => {
-    console.log(canvas);
     canvas.renderAll();
-
     canvas.createPNGStream().pipe(fs.createWriteStream("./docs/output.png")) 
+    console.log('END;');
     })
