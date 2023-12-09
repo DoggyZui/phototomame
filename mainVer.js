@@ -13,15 +13,17 @@ const count_row = 1;
 const count_col = 2;
 
 // 아틀라싱 툴임. 다만, 유니티 내에서 편집가능하면 패스해도됨.
-for(let stream=3;stream<5;stream++){
-  const canvas = new fabric.StaticCanvas(null, {width: size_width*count_col, height: size_height*count_row})
-  const promiseArray = []
-  for(let row=0;row<count_row;row++){
-    let callRow = row+1;
-    const file = await fs.readdirSync(`./origin/${stream}/canvas${callRow}`);
-    for(let col=0;col<count_col;col++){
-      const p = new Promise((resolve) => {
-        fabric.Image.fromURL('file://'+__dirname+`/origin/${stream}/canvas${callRow}/${file[col]}`,(oImg)=>{
+for(let time=0;time<2;time++){
+  
+  for(let stream=3;stream<5;stream++){
+    const canvas = new fabric.StaticCanvas(null, {width: size_width*count_col, height: size_height*count_row})
+    const promiseArray = []
+    for(let row=0;row<count_row;row++){
+      let callRow = row+1;
+      const file = await fs.readdirSync(`./origin/${stream}/canvas${callRow}`);
+      for(let col=0;col<count_col;col++){
+        const p = new Promise((resolve) => {
+          fabric.Image.fromURL('file://'+__dirname+`/origin/${stream}/canvas${callRow}/${file[time*count_row+row]}`,(oImg)=>{
           oImg.set({ 
             id : 'image_'+row+'_'+col,
             left:col*size_width,
@@ -38,10 +40,11 @@ for(let stream=3;stream<5;stream++){
     }
   }
   Promise.all(promiseArray)
-    .then(() => {
+  .then(() => {
       canvas.renderAll();
-      canvas.createPNGStream().pipe(fs.createWriteStream(`./docs/output${stream}.png`)) 
+      canvas.createPNGStream().pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`)) 
       console.log('END;');
     })
+  }
 }
 
