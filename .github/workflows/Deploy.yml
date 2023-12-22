@@ -23,6 +23,10 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Install dependencies2
         run: npm install
+      - name: Launching
+        working-directory: ./docs
+        run: |
+          ls -la
       - name: Build project
         run: npm run build
 
