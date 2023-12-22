@@ -40,7 +40,7 @@ for(let time=0;time<14;time++){
     Promise.all(promiseArray)
       .then(() => {
         canvas.renderAll();
-        canvas.createJPEGStream().pipe(sharp().png({quality:50}))
+        canvas.createJPEGStream().pipe(sharp().png({quality:75}))
         .pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`));
         console.log('END;');
       })
