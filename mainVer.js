@@ -47,10 +47,11 @@ for(let time=0;time<21;time++){
     }
   }
   Promise.all(promiseArray)
-  .then(() => {
+  .then( () => {
       canvas.renderAll();
-      canvas.createPNGStream().pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`)) 
-      .pipe(transformer)
+      canvas.createPNGStream().pipe(sharp().png({quality:50,force:true})).pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`))
+      //.sharp(`./docs/output${stream}_${time}_.png`).png({quality:80,force:true}).toFile(`./docs/output${stream}_${time}.png`)
+
       console.log('END;');
     })
   }

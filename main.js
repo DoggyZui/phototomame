@@ -11,13 +11,6 @@ const size_height = 1024;
 // const size_height = 2160;
 const count_row = 2;
 const count_col = 1;
-const transformer = sharp()
-  .resize({
-    width: size_width*count_col,
-    height: size_height*count_row,
-    fit: sharp.fit.cover,
-    position: sharp.strategy.entropy
-  });
 // 아틀라싱 툴임. 다만, 유니티 내에서 편집가능하면 패스해도됨.
 for(let time=0;time<14;time++){
   for(let stream=0;stream<1;stream++){
@@ -47,9 +40,8 @@ for(let time=0;time<14;time++){
     Promise.all(promiseArray)
       .then(() => {
         canvas.renderAll();
-        canvas.createPNGStream()
-        .pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`)) 
-        .pipe(transformer)
+        canvas.createPNGStream().pipe(sharp().png({quality:50,force:true}))
+        .pipe(fs.createWriteStream(`./docs/output${stream}_${time}.png`)).close();
         console.log('END;');
       })
   }
