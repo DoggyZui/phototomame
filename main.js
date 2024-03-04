@@ -12,7 +12,7 @@ const size_height = 1024;
 const count_row = 2;
 const count_col = 1;
 // 아틀라싱 툴임. 다만, 유니티 내에서 편집가능하면 패스해도됨.
-for(let time=0;time<14;time++){
+for(let time=0;time<17;time++){
   for(let stream=0;stream<1;stream++){
     const canvas = new fabric.StaticCanvas(null, {width: size_width*count_col, height: size_height*count_row})
     const promiseArray = []
